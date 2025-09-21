@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+    #lyrics {
+      color: white;
+      font-size: 5em;
+      font-weight: bold;
+      text-align: center;
+    }
+    video {
+      display: none; /* ẩn video, chỉ dùng để đồng bộ nhịp */
+    }
+  </style>
+</head>
+<body>
+  <div id="lyrics"></div>
+  <video id="video" src="video.mp4"></video>
+
+  <script>
+    const lyrics = [
+      { time: 0.5, text: "Có" },
+      { time: 1, text: "phải" },
+      { time: 1.5, text: "vì" },
+      { time: 2, text: "anh" },
+      { time: 3, text: "Vẫn" },
+      { time: 3.5, text: "thường" },
+      { time: 4, text: "vố" },
+      { time: 4.5, text: "ý" },
+      { time: 5, text: "Chẳng" },
+      { time: 5.5, text: "suy" },
+      { time: 6, text: "nghĩ," },
+      { time: 6.5, text: "vài" },
+      { time: 7, text: "lần" },
+      { time: 7.5, text: "khiến" },
+      { time: 8, text: "em" },
+      { time: 8.5, text: "u" },
+      { time: 9, text: "sầu" },
+      { time: 10, text: "Có" },
+      { time: 10.5, text: "phải" },
+      { time: 11, text: "vì" },
+      { time: 11.5, text: "anh" },
+      { time: 12, text: "Trót" },
+      { time: 12.5, text: "vài" },
+      { time: 13, text: "câu" },
+      { time: 13.5, text: "nói" },
+      { time: 14, text: "Chạm" },
+      { time: 14.5, text: "vào" },
+      { time: 15, text: "nơi" },
+      { time: 15.5, text: "niềm" },
+      { time: 16, text: "đau" },
+      { time: 16.5, text: "mà" },
+      { time: 17, text: "người" },
+      { time: 17.5, text: "luôn" },
+      { time: 18, text: "chôn" },
+      { time: 18.5, text: "giấu" },
+      { time: 19, text: "Vài" },
+      { time: 19.5, text: "câu" },
+      { time: 20, text: "nói" },
+      { time: 20.5, text: "có" },
+      { time: 21, text: "khiến" },
+      { time: 21.5, text: "người" },
+      { time: 22, text: "thay" },
+      { time: 22.5, text: "đổi?" },
+      { time: 23, text: "Có" },
+      { time: 23.5, text: "khiến" },
+      { time: 24, text: "bờ" },
+      { time: 24.5, text: "môi" },
+      { time: 25, text: "ấm" },
+      { time: 25.5, text: "êm?" },
+      { time: 26, text: "Nay" },
+      { time: 26.5, text: "chỉ" },
+      { time: 27, text: "còn" },
+      { time: 27.5, text: "trong" },
+      { time: 28, text: "nỗi" },
+      { time: 28.5, text: "nhớ" }
+    ];
+
+    const video = document.getElementById("video");
+    const lyricsDiv = document.getElementById("lyrics");
+
+    video.play();
+
+    video.addEventListener("timeupdate", () => {
+      const currentTime = video.currentTime;
+      let currentWord = "";
+
+      for (let i = 0; i < lyrics.length; i++) {
+        if (currentTime >= lyrics[i].time) {
+          currentWord = lyrics[i].text;
+        }
+      }
+
+      lyricsDiv.textContent = currentWord;
+    });
+  </script>
+</body>
+</html>
